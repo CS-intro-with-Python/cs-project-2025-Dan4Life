@@ -15,12 +15,22 @@ Describe the steps to set up the environment and run the application. This can b
 
 ```
 Your commands
+#To be added
 
 ```
 
 ## Requirements
 
 Describe technologies, libraries, languages you are using (this can be updated in the future).
+
+* **Language:** Python (Flask framework)  
+* **Database:** To be added
+* **Frontend:** HTML, JavaScript, Tailwind CSS for styling  
+* **Machine Learning:** HuggingFace Transformers or TextBlob for sentiment analysis  
+* **Authentication:** JWT (PyJWT)  
+* **Containerization:** Docker and Docker Compose  
+* **CI/CD:** GitHub Actions for automated testing and deployment  
+
 
 ## Features
 
@@ -35,6 +45,9 @@ Describe technologies, libraries, languages you are using (this can be updated i
 ## Git
 
 Specify which branch will store the latest stable version of the application
+
+* The main branch will store the latest stable version of the application.
+* Development and new features will be implemented in the dev branch before merging into main.
 
 ## Success Criteria
 
