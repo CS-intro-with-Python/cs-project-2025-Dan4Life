@@ -3,7 +3,11 @@
 
 ## Description
 
-Describe the project in 2-3 sentences (You can use more). 
+MindSpace is a privacy-focused digital journal that helps users reflect on their thoughts and emotions safely.
+Users can write journal entries through a simple web interface.
+Each entry is stored securely in a private database and analyzed for sentiment (positive, neutral, or negative).
+Over time, users can view emotional trend visualizations, helping them understand their mental state and habits.
+It’s your mind’s safe space, no one else can read it.
 
 ## Setup
 
@@ -20,10 +24,13 @@ Describe technologies, libraries, languages you are using (this can be updated i
 
 ## Features
 
-Describe the main features the application performs.
-
-* Feature 1
-* Feature 2
+* Describe the main features the application performs.
+* Private Journaling – Create, edit, and delete personal journal entries securely.
+* Sentiment Analysis – Each entry is analyzed for mood (positive, neutral, or negative).
+* Mood Dashboard – View mood trends and weekly emotional stats.
+* Tags & Search – Add tags and search or filter past entries easily.
+* Data Export – Download all entries as a text or CSV file.
+* User Authentication – Secure login and registration.
 
 ## Git
 
@@ -34,5 +41,7 @@ Specify which branch will store the latest stable version of the application
 Describe the criteria by which the success of the project can be determined
 (this will be updated in the future)
 
-* Criteria 1
-
+* Functional API - All core endpoints for authentication, journaling, and sentiment analysis work correctly.
+* Accurate Sentiment Results - The system classifies moods reliably for most entries.
+* Smooth User Experience - Users can write, search, and view entries easily from the web interface.
+* Data Security - All user data is stored privately and protected with authentication and encryption.
