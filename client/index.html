@@ -1,22 +1,27 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>MindSpace Demo</title>
-  </head>
   <body>
-    <h1>MindSpace demo</h1>
-    <textarea id="txt" rows="6" cols="60"></textarea><br>
-    <button id="btn">Save</button>
+    <h1>MindSpace Journal</h1>
+    <textarea id="txt"></textarea><br>
+    <button id="save">Save Entry</button>
+    <button id="load">Load Entries</button>
     <pre id="out"></pre>
+
     <script>
-      document.getElementById("btn").onclick = async function(){
+      document.getElementById("save").onclick = async () => {
         let text = document.getElementById("txt").value;
-        let r = await fetch("/api/journal",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text})});
-        let j = await r.json();
-        document.getElementById("out").textContent = JSON.stringify(j,null,2);
+        let r = await fetch("/api/entries", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({text})
+        });
+        document.getElementById("out").textContent = await r.text();
+      };
+
+      document.getElementById("load").onclick = async () => {
+        let r = await fetch("/api/entries");
+        document.getElementById("out").textContent = await r.text();
       };
     </script>
   </body>
 </html>
-

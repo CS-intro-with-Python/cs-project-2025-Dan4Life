@@ -1,20 +1,27 @@
 from flask import Flask, jsonify, request
 from flasgger import Swagger
 
+entries = []
+
 def create_app():
     app = Flask(__name__)
     Swagger(app)
 
-    @app.route("/api/health", methods=["GET"])
-    def health():
-        return jsonify({"status":"ok"})
+    @app.route("/api/status")
+    def status():
+        return jsonify({"ok": True})
 
-    @app.route("/api/journal", methods=["POST"])
+    @app.route("/api/entries", methods=["POST"])
     def create_entry():
-        payload = request.json or {}
-        text = payload.get("text","")
-        sentiment = "neutral"
-        return jsonify({"id":1,"text":text,"sentiment":sentiment}),201
+        data = request.json or {}
+        text = data.get("text", "")
+        entry = {"id": len(entries) + 1, "text": text}
+        entries.append(entry)
+        return jsonify(entry), 201
+
+    @app.route("/api/entries", methods=["GET"])
+    def list_entries():
+        return jsonify(entries)
 
     return app
 
