@@ -18,4 +18,4 @@ RUN chmod +x /app/entrypoint.sh
 
 # Define the Entrypoint and Command
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:${PORT:-5000}", "--callable", "create_app", "app.app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:${PORT:-5000}", "app.app:create_app"]
