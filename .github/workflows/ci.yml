@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build image
+        run: docker build -t mindspace-ci:latest .
+      - name: Start container
+        run: docker run -d --name mindspace_ci -p 5000:5000 mindspace-ci:latest
+      - name: Wait for service
+        run: |
+          for i in 1 2 3 4 5; do
+            sleep 1
+            curl -f http://localhost:5000/api/health && break || true
+          done
+      - name: Run pytest (inside container)
+        run: docker exec mindspace_ci bash -lc "pip install pytest requests && pytest -q"
+      - name: Curl route from host
+        run: curl -sS http://localhost:5000/api/health
+      - name: Stop container
+        run: docker stop mindspace_ci && docker rm mindspace_ci
