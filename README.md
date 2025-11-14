@@ -3,15 +3,11 @@
 
 ## Description
 
-MindSpace is a privacy-focused digital journal that helps users reflect on their thoughts and emotions safely.
-Users can write journal entries through a simple web interface.
-Each entry is stored securely in a private database and analyzed for sentiment (positive, neutral, or negative).
-Over time, users can view emotional trend visualizations, helping them understand their mental state and habits.
-[cite_start]It’s your mind’s safe space, no one else can read it. [cite: 16]
+MindSpace is a privacy-focused digital journal that helps users reflect on their thoughts and emotions safely. Users can write journal entries through a simple web interface. Each entry is stored securely in a private database and analyzed for sentiment (positive, neutral, or negative). Over time, users can view emotional trend visualizations, helping them understand their mental state and habits. It’s your mind’s safe space, no one else can read it.
 
 ## Setup (How to Deploy and Run)
 
-[cite_start]This project uses **Docker Compose** for local development and a containerized deployment to **Railways**. [cite: 6, 9, 17]
+This project uses **Docker Compose** for local development and a containerized deployment to a Continuous Deployment (CD) service.
 
 ### Local Run with Docker Compose
 
@@ -27,25 +23,25 @@ Over time, users can view emotional trend visualizations, helping them understan
 
 ### Deployment (CI/CD)
 
-[cite_start]The project uses **GitHub Actions** for Continuous Integration (CI) and **Railway.com** for Continuous Deployment (CD). [cite: 8, 9, 46]
+The project uses **GitHub Actions** for Continuous Integration (CI) and **Railway.com** for Continuous Deployment (CD).
 
-* Any push to the `main` branch automatically triggers the CI pipeline.
+* Any push to the **main** branch automatically triggers the CI pipeline.
 * Upon successful CI (build, run, and route checks passing), the updated image is automatically deployed to the Railway service.
 
 ## How to Run Tests
 
-Tests are run automatically via the GitHub Actions pipeline. [cite_start]For local testing, you can use `docker-compose` to execute the commands inside the running container. [cite: 18]
+Tests are run automatically via the **GitHub Actions** CI pipeline. The CI pipeline includes checks for image building, container running, and essential route accessibility.
 
 ### Local Test Execution (Requires containers to be running)
 
-1.  **Execute Client Route Check**: This command runs the simple route check script (`client/check_status.py`) which uses the `requests` library to verify the `/api/status` endpoint.
+1.  **Execute Client Route Check**: This command executes the client script (`client/check_status.py`) inside the running `web` container. This script uses the **requests library** to check the `/api/status` route, verifying the server and client are functional and that existing routes can be accessed.
     ```bash
-    docker-compose exec web python client/check_status.py
+    docker-compose exec web python backend/client/check_status.py
     ```
 
 ## How to Get Logs
 
-[cite_start]To monitor the health and behavior of the application, you can view the container logs. [cite: 20]
+To monitor the health and behavior of the running application container:
 
 1.  **View Live Logs**:
     ```bash
@@ -58,15 +54,15 @@ Tests are run automatically via the GitHub Actions pipeline. [cite_start]For loc
 
 ## Requirements (Technologies Used)
 
-[cite_start]The following technologies and tools are used in this project: [cite: 19]
+The following technologies and tools are used in this project:
 
-* [cite_start]**Language & Backend Framework:** Python (3.11-slim) and **Flask** framework. [cite: 10]
-* [cite_start]**Containerization:** **Docker** and **Docker Compose**. [cite: 6]
-* [cite_start]**CI/CD:** **GitHub Actions** for CI and **Railway.com** for CD. [cite: 8, 9, 46]
-* [cite_start]**Database:** To be added (Future integration will include an SQL or NoSQL solution). [cite: 13]
-* [cite_start]**Frontend:** HTML, JavaScript, Tailwind CSS (simplest browser-based interface). [cite: 14]
-* [cite_start]**API Documentation:** To be added (Future integration will use tools like **Swagger**). [cite: 12]
-* [cite_start]**Testing:** Python's standard `requests` library for route checks, and plans for unit tests using `pytest`. [cite: 11]
+* **Language & Backend Framework:** Python (3.11-slim) and **Flask** framework.
+* **Containerization:** **Docker** and **Docker Compose**.
+* **CI/CD:** **GitHub Actions** for CI and **Railway.com** for CD.
+* **Database:** To be added (Future integration will include an SQL or NoSQL solution).
+* **Frontend:** HTML, JavaScript, Tailwind CSS (simplest browser-based interface).
+* **API Documentation:** To be added (Future integration will use tools like **Swagger**).
+* **Testing:** Python's standard **requests** library for route checks, and plans for unit tests using `pytest`.
 
 ## Features
 
@@ -79,7 +75,7 @@ Tests are run automatically via the GitHub Actions pipeline. [cite_start]For loc
 
 ## Git
 
-* [cite_start]The **main** branch will store the latest stable version of the application. [cite: 7]
+* The **main** branch will store the latest stable version of the application.
 * Development and new features will be implemented in the `dev` branch before merging into `main`.
 
 ## Success Criteria
@@ -88,4 +84,4 @@ Tests are run automatically via the GitHub Actions pipeline. [cite_start]For loc
 * **Accurate Sentiment Results** - The system classifies moods reliably for most entries.
 * **Smooth User Experience** - Users can write, search, and view entries easily from the web interface.
 * **Data Security** - All user data is stored privately and protected with authentication and encryption.
-* [cite_start]**Checkpoint Success**: The GitHub Actions pipeline status must be successful, verifying that the Docker image builds, runs, and that existing routes are accessible.
+* **Checkpoint Success**: The GitHub Actions pipeline status must be **successful** at the time of evaluation, verifying that the Docker image builds, runs, and that existing routes are accessible, satisfying the CI/CD and Docker requirements.
