@@ -1,9 +1,16 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
+import os
 
 entries = []
 
+CLIENT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'client')
+
 def create_app():
     app = Flask(__name__)
+
+    @app.route("/")
+    def index():
+        return send_from_directory(CLIENT_DIR, 'index.html')
 
     @app.route("/api/status")
     def status():
