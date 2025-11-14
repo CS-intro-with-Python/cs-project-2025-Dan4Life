@@ -3,20 +3,27 @@
 
 ## Description
 
-MindSpace is a privacy-focused digital journal that helps users reflect on their thoughts and emotions safely. Users can write journal entries through a simple web interface. Each entry is stored securely in a private database and analyzed for sentiment (positive, neutral, or negative). Over time, users can view emotional trend visualizations, helping them understand their mental state and habits. It’s your mind’s safe space, no one else can read it.
+MindSpace is a **privacy-focused digital journal** that helps users reflect on their thoughts and emotions safely. Users can write journal entries through a simple web interface. Each entry is stored securely in a private database and analyzed for **sentiment (positive, neutral, or negative)**. Over time, users can view emotional trend visualizations, helping them understand their mental state and habits. It’s your mind’s safe space, no one else can read it.
+
+***
 
 ## Setup (How to Deploy and Run)
 
-This project uses **Docker Compose** for local development and a containerized deployment to a Continuous Deployment (CD) service.
+This project uses **Docker Compose** to manage the multi-container application (web server and database) for local development, and utilizes a CI/CD pipeline for deployment.
+
+### Prerequisites
+
+* Docker and Docker Compose installed.
 
 ### Local Run with Docker Compose
 
-1.  **Build and Run**: Run the following command from the project root directory. This builds the image and starts the `web` service.
+1.  **Build and Run**: Run the following command from the project root directory. This builds the application and database images and starts all services in detached mode.
     ```bash
     docker-compose up --build -d
     ```
-2.  **Access the Application**: The application server will be available at `http://localhost:8080`.
-3.  **Stop Services**:
+2.  **Access the Application**: The application server and client interface will be available at `http://localhost:8080`.
+3.  **Access the API Documentation**: The Swagger documentation will be available at `http://localhost:8080/docs`.
+4.  **Stop Services**:
     ```bash
     docker-compose down
     ```
@@ -25,19 +32,30 @@ This project uses **Docker Compose** for local development and a containerized d
 
 The project uses **GitHub Actions** for Continuous Integration (CI) and **Railway.com** for Continuous Deployment (CD).
 
-* Any push to the **main** branch automatically triggers the CI pipeline.
-* Upon successful CI (build, run, and route checks passing), the updated image is automatically deployed to the Railway service.
+* Any push to the **main** branch automatically triggers the CI pipeline, which runs the full test suite.
+* Upon successful CI, the updated image is automatically deployed to the Railway service.
+
+***
 
 ## How to Run Tests
 
-Tests are run automatically via the **GitHub Actions** CI pipeline. The CI pipeline includes checks for image building, container running, and essential route accessibility.
+**Tests are a core requirement of the final project**. They are run automatically via the **GitHub Actions** CI pipeline.
 
-### Local Test Execution (Requires containers to be running)
+### Local Test Execution
 
-1.  **Execute Client Route Check**: This command executes the client script (`client/check_status.py`) inside the running `web` container. This script uses the **requests library** to check the `/api/status` route, verifying the server and client are functional and that existing routes can be accessed.
+1.  **Run All Tests (Unit and Integration)**: This command executes the full test suite (`pytest`) inside the running `web` container.
+    ```bash
+    docker-compose exec web pytest tests/
+    ```
+
+### Client Route Check (CI/CD Verification)
+
+1.  **Execute Client Route Check**: This command executes the client script (`client/check_status.py`) inside the running `web` container, using the **requests library** to check the `/api/status` route and verify server functionality.
     ```bash
     docker-compose exec web python backend/client/check_status.py
     ```
+
+***
 
 ## How to Get Logs
 
@@ -52,17 +70,21 @@ To monitor the health and behavior of the running application container:
     docker-compose logs web
     ```
 
+***
+
 ## Requirements (Technologies Used)
 
 The following technologies and tools are used in this project:
 
 * **Language & Backend Framework:** Python (3.11-slim) and **Flask** framework.
+* **Database (SQL):** **PostgreSQL** integrated and managed via Docker Compose.
+* **API Documentation:** **Swagger** (using Flask-RESTX or similar tool) for documentation of all REST API endpoints.
+* **Data Models & Access:** SQLAlchemy (ORM) for interacting with PostgreSQL.
+* **Machine Learning:** HuggingFace Transformers or TextBlob for sentiment analysis.
+* **Testing:** **Pytest** for unit and integration testing.
+* **Frontend:** HTML, JavaScript, Tailwind CSS (browser-based interface).
 * **Containerization:** **Docker** and **Docker Compose**.
 * **CI/CD:** **GitHub Actions** for CI and **Railway.com** for CD.
-* **Database:** To be added (Future integration will include an SQL or NoSQL solution).
-* **Frontend:** HTML, JavaScript, Tailwind CSS (simplest browser-based interface).
-* **API Documentation:** To be added (Future integration will use tools like **Swagger**).
-* **Testing:** Python's standard **requests** library for route checks, and plans for unit tests using `pytest`.
 
 ## Features
 
@@ -71,7 +93,9 @@ The following technologies and tools are used in this project:
 * **Mood Dashboard** – View mood trends and weekly emotional stats.
 * **Tags & Search** – Add tags and search or filter past entries easily.
 * **Data Export** – Download all entries as a text or CSV file.
-* **User Authentication** – Secure login and registration.
+* **User Authentication** – Secure login and registration using JWT.
+
+***
 
 ## Git
 
@@ -84,4 +108,4 @@ The following technologies and tools are used in this project:
 * **Accurate Sentiment Results** - The system classifies moods reliably for most entries.
 * **Smooth User Experience** - Users can write, search, and view entries easily from the web interface.
 * **Data Security** - All user data is stored privately and protected with authentication and encryption.
-* **Checkpoint Success**: The GitHub Actions pipeline status must be **successful** at the time of evaluation, verifying that the Docker image builds, runs, and that existing routes are accessible, satisfying the CI/CD and Docker requirements.
+* **Final Project Success**: All project requirements, including integrated database, API documentation (Swagger), and passing tests (Pytest), must be fully implemented and functional.
