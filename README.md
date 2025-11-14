@@ -77,9 +77,9 @@ To monitor the health and behavior of the running application container:
 The following technologies and tools are used in this project:
 
 * **Language & Backend Framework:** Python (3.11-slim) and **Flask** framework.
-* **Database (SQL):** **PostgreSQL** integrated and managed via Docker Compose.
+* **Database (NoSQL):** **MongoDB** integrated and managed via Docker Compose.
 * **API Documentation:** **Swagger** (using Flask-RESTX or similar tool) for documentation of all REST API endpoints.
-* **Data Models & Access:** SQLAlchemy (ORM) for interacting with PostgreSQL.
+* **Data Models & Access:** **Pymongo** or **MongoEngine** for interaction with MongoDB.
 * **Machine Learning:** HuggingFace Transformers or TextBlob for sentiment analysis.
 * **Testing:** **Pytest** for unit and integration testing.
 * **Frontend:** HTML, JavaScript, Tailwind CSS (browser-based interface).
