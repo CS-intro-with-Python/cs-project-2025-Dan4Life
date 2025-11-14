@@ -1,10 +1,19 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flasgger import Swagger
+import os
+
+entries = []
 
 entries = []
 
 def create_app():
     app = Flask(__name__)
+
+    app.config['SWAGGER'] = {
+        'title': 'MindSpace API',
+        'uiversion': 3
+    }
+
     Swagger(app)
 
     @app.route("/api/status")
