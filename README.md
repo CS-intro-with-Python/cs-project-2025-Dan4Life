@@ -5,6 +5,8 @@
 
 MindSpace is a **privacy-focused digital journal** that helps users reflect on their thoughts and emotions safely. Users can write journal entries through a simple web interface. Each entry is stored securely in a private database and analyzed for **sentiment (positive, neutral, or negative)**. Over time, users can view emotional trend visualizations, helping them understand their mental state and habits. It’s your mind’s safe space, no one else can read it.
 
+Check it out here: [Click Me!](https://cs-project-2025-dan4life-production.up.railway.app/)
+
 ***
 
 ## Setup (How to Deploy and Run)
