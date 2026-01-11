@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}MindSpace Journal{% endblock %}
+{% block hero_title %}Your quiet journal corner{% endblock %}
+{% block header_action %}
+  <a class="button ghost" href="/login">Sign in</a>
+{% endblock %}
+{% block main_class %}single{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h2>Welcome</h2>
+    <p class="small">
+      MindSpace keeps your thoughts private and helps you track the emotional tone of each entry.
+    </p>
+    <div class="row" style="margin-top: 16px;">
+      <a class="button" href="/login">Sign in</a>
+      <a class="button ghost" href="/register">Register</a>
+    </div>
+  </section>
+{% endblock %}

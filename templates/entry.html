@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Entry · MindSpace{% endblock %}
+{% block hero_title %}Journal entry{% endblock %}
+{% block header_action %}
+  <a class="button ghost" href="/dashboard">Back to dashboard</a>
+{% endblock %}
+{% block main_class %}single{% endblock %}
+
+{% block content %}
+  <section class="card" id="entry-detail" data-entry-id="{{ entry_id }}">
+    <h2 id="entry-title">Loading...</h2>
+    <p class="small" id="entry-meta"></p>
+    <div id="entry-tags"></div>
+    <div id="entry-body" class="entry-body"></div>
+  </section>
+{% endblock %}

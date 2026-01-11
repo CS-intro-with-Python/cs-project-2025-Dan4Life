@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in · MindSpace{% endblock %}
+{% block hero_title %}Welcome back{% endblock %}
+{% block header_action %}
+  <a class="button ghost" href="/register">Register</a>
+{% endblock %}
+{% block main_class %}single{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h2>Sign in</h2>
+    <p class="small">Sign in to keep your entries private.</p>
+    <form data-auth-form="login">
+      <label for="username">Username</label>
+      <input id="username" placeholder="your name" required />
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="••••••" required />
+      <div class="row" style="margin-top: 16px;">
+        <button type="submit">Sign in</button>
+        <a class="button ghost" href="/register">Register</a>
+      </div>
+    </form>
+    <p id="auth-message" class="small"></p>
+  </section>
+{% endblock %}

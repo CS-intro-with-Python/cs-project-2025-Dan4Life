@@ -52,9 +52,9 @@ The project uses **GitHub Actions** for Continuous Integration (CI) and **Railwa
 
 ### Client Route Check (CI/CD Verification)
 
-1.  **Execute Client Route Check**: This command executes the client script (`client/check_status.py`) inside the running `web` container, using the **requests library** to check the `/api/status` route and verify server functionality.
+1.  **Execute Client Route Check**: This command executes the client script (`scripts/check_status.py`) inside the running `web` container, using the **requests library** to check the `/api/status` route and verify server functionality.
     ```bash
-    docker-compose exec web python backend/client/check_status.py
+    docker-compose exec web python scripts/check_status.py
     ```
 
 ***
@@ -79,9 +79,9 @@ To monitor the health and behavior of the running application container:
 The following technologies and tools are used in this project:
 
 * **Language & Backend Framework:** Python (3.11-slim) and **Flask** framework.
-* **Database (NoSQL):** **MongoDB** integrated and managed via Docker Compose.
+* **Database:** **PostgreSQL** integrated and managed via Docker Compose.
 * **API Documentation:** **Swagger** (using Flask-RESTX or similar tool) for documentation of all REST API endpoints.
-* **Data Models & Access:** **Pymongo** or **MongoEngine** for interaction with MongoDB.
+* **Data Models & Access:** **psycopg2** for interaction with PostgreSQL.
 * **Machine Learning:** HuggingFace Transformers or TextBlob for sentiment analysis.
 * **Testing:** **Pytest** for unit and integration testing.
 * **Frontend:** HTML, JavaScript, Tailwind CSS (browser-based interface).

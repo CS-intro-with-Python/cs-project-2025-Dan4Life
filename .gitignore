@@ -14,3 +14,18 @@ db.sqlite3
 
 # Environment/Secret Variables
 .env
+.env.*
+
+# Uploads and caches
+static/uploads/
+.pytest_cache/
+
+# OS files
+.DS_Store
+
+# Editor config
+.vscode/
+.idea/
+
+# Logs
+*.log

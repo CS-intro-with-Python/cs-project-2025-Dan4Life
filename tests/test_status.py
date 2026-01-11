@@ -1,5 +1,5 @@
-import requests
 
-def test_status():
-    r = requests.get("http://localhost:8080/api/status")
-    assert r.status_code == 200
+def test_status(client):
+    response = client.get("/api/status")
+    assert response.status_code == 200
+    assert response.json == {"ok": True}
