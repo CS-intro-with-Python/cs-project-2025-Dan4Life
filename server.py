@@ -214,7 +214,8 @@ def create_app():
         static_url_path="/static",
     )
     app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
-    init_db()
+    if os.getenv("SKIP_DB_INIT") != "1":
+        init_db()
 
     swagger_template = {
         "swagger": "2.0",
@@ -762,12 +763,9 @@ def create_app():
                 "last_week": last_week,
             }
         )
-
     return app
 
-
 app = create_app()
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

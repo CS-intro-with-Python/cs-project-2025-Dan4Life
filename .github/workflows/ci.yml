@@ -17,7 +17,7 @@ jobs:
         run: docker build -t mindspace:ci .
 
       - name: Run container
-        run: docker run -d --name mindspace -p 8080:8080 -e PORT=8080 mindspace:ci
+        run: docker run -d --name mindspace -p 8080:8080 -e PORT=8080 -e SKIP_DB_INIT=1 mindspace:ci
 
       - name: Wait for service
         run: sleep 10 
