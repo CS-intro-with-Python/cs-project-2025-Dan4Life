@@ -1,4 +1,19 @@
 
+from server import create_app, get_db_connection
+
+
+def clean_db():
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("TRUNCATE entry_tags, tags, entries, users RESTART IDENTITY CASCADE")
+            conn.commit()
+
+
+def get_client():
+    app = create_app()
+    return app.test_client()
+
+
 def register_user(client, username="alice", password="secret"):
     response = client.post(
         "/api/auth/register",
@@ -12,7 +27,9 @@ def auth_headers(token):
     return {"Authorization": f"Bearer {token}"}
 
 
-def test_auth_and_entry_flow(client):
+def test_auth_and_entry_flow():
+    clean_db()
+    client = get_client()
     registration = register_user(client)
     token = registration["token"]
 
@@ -40,7 +57,9 @@ def test_auth_and_entry_flow(client):
     assert dashboard_response.json["total_entries"] == 1
 
 
-def test_login_rejects_invalid_password(client):
+def test_login_rejects_invalid_password():
+    clean_db()
+    client = get_client()
     register_user(client, username="bob", password="secret")
     response = client.post(
         "/api/auth/login",
