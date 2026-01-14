@@ -55,6 +55,9 @@ def get_db_config():
 
 
 def get_db_connection():
+    database_url = os.getenv("DATABASE_URL")
+    if database_url:
+        return psycopg2.connect(database_url)
     return psycopg2.connect(**get_db_config())
 
 

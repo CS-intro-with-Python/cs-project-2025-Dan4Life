@@ -32,10 +32,15 @@ This project uses **Docker Compose** to manage the multi-container application (
 
 ### Deployment (CI/CD)
 
-The project uses **GitHub Actions** for Continuous Integration (CI) and **Railway.com** for Continuous Deployment (CD).
+The project uses **GitHub Actions** for Continuous Integration (CI). You can deploy on **Railway** with the Dockerfile.
 
-* Any push to the **main** branch automatically triggers the CI pipeline, which runs the full test suite.
-* Upon successful CI, the updated image is automatically deployed to the Railway service.
+#### Railway Setup
+1. **Create a Railway Project** and add a **PostgreSQL** service.
+2. **Add a Web Service** from this GitHub repo (Docker build).
+3. **Set environment variables** in Railway:
+   - `DATABASE_URL` (Railway provides this automatically for the Postgres service)
+   - `JWT_SECRET` (set your own)
+4. **Deploy**. Railway will build and run the container.
 
 ***
 
