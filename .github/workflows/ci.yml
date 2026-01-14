@@ -10,17 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Docker image
-        run: docker build -t mindspace:ci .
-
-      - name: Run container
-        run: docker run -d --name mindspace -p 8080:8080 -e PORT=8080 -e SKIP_DB_INIT=1 mindspace:ci
+      - name: Build and start services
+        run: docker compose up --build -d
 
       - name: Wait for service
-        run: sleep 10 
+        run: sleep 10
+
+      - name: Run tests
+        run: docker compose exec -T web pytest tests/
 
       - name: Test /api/status
         run: curl -f http://localhost:8080/api/status
