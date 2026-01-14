@@ -89,7 +89,7 @@ The following technologies and tools are used in this project:
 * **Data Models & Access:** **psycopg2** for interaction with PostgreSQL.
 * **Machine Learning:** HuggingFace Transformers or TextBlob for sentiment analysis.
 * **Testing:** **Pytest** for unit and integration testing.
-* **Frontend:** HTML, JavaScript, Tailwind CSS (browser-based interface).
+* **Frontend:** HTML, JavaScript, CSS (browser-based interface).
 * **Containerization:** **Docker** and **Docker Compose**.
 * **CI/CD:** **GitHub Actions** for CI and **Railway.com** for CD.
 
