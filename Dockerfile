@@ -8,6 +8,7 @@ COPY server.py /app/server.py
 COPY templates /app/templates
 COPY static /app/static
 COPY tests /app/tests
+COPY scripts /app/scripts
 
 ENV PYTHONPATH=/app
 
