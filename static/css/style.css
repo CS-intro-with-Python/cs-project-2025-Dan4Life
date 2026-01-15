@@ -121,6 +121,7 @@ button:hover,
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .row > * {

@@ -8,7 +8,7 @@
 
 {% block content %}
   <section class="card" id="journal-card">
-    <h2>New entry</h2>
+    <h2 id="entry-form-title">New entry</h2>
     <input id="entry-id" type="hidden" />
     <label for="title">Title</label>
     <input id="title" placeholder="A moment to remember" />
@@ -25,10 +25,7 @@
     <div class="row" style="margin-top: 16px;">
       <button id="save">Save entry</button>
       <button id="update" class="ghost">Update entry</button>
-    </div>
-    <div class="row" style="margin-top: 12px;">
-      <button id="cancel-edit" class="ghost">Cancel edit</button>
-      <button id="export" class="ghost">Export CSV</button>
+      <button id="cancel-edit" class="ghost">Cancel</button>
     </div>
     <p id="entry-message" class="small"></p>
   </section>
@@ -40,6 +37,7 @@
         <p class="small" id="summary"></p>
       </div>
       <button id="refresh" class="ghost">Refresh</button>
+      <button id="export" class="ghost">Export CSV</button>
     </div>
     <label for="search">Search</label>
     <input id="search" placeholder="Search text or title" />

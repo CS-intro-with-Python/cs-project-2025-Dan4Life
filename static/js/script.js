@@ -78,6 +78,7 @@ const setupDashboard = () => {
   const summary = document.getElementById("summary");
   const tagFilter = document.getElementById("tag-filter");
   const entryIdField = document.getElementById("entry-id");
+  const entryTitle = document.getElementById("entry-form-title");
   const saveBtn = document.getElementById("save");
   const updateBtn = document.getElementById("update");
   const cancelBtn = document.getElementById("cancel-edit");
@@ -119,12 +120,14 @@ const setupDashboard = () => {
   const updateEditState = isEditing => {
     if (isEditing) {
       saveBtn.classList.add("hidden");
-      updateBtn.disabled = false;
-      cancelBtn.disabled = false;
+      updateBtn.classList.remove("hidden");
+      cancelBtn.classList.remove("hidden");
+      entryTitle.textContent = "Update entry";
     } else {
       saveBtn.classList.remove("hidden");
-      updateBtn.disabled = true;
-      cancelBtn.disabled = true;
+      updateBtn.classList.add("hidden");
+      cancelBtn.classList.remove("hidden");
+      entryTitle.textContent = "New entry";
     }
   };
 
@@ -283,6 +286,17 @@ const setupDashboard = () => {
     updateEditState(false);
   };
 
+  const cancelNewEntry = () => {
+    if (entryIdField.value) {
+      cancelEdit();
+      return;
+    }
+    document.getElementById("title").value = "";
+    document.getElementById("text").value = "";
+    document.getElementById("tags").value = "";
+    entryMessage.textContent = "";
+  };
+
   const exportEntries = async () => {
     entryMessage.textContent = "";
     try {
@@ -309,7 +323,7 @@ const setupDashboard = () => {
 
   saveBtn.addEventListener("click", saveEntry);
   updateBtn.addEventListener("click", updateEntry);
-  cancelBtn.addEventListener("click", cancelEdit);
+  cancelBtn.addEventListener("click", cancelNewEntry);
   uploadButton?.addEventListener("click", async () => {
     entryMessage.textContent = "";
     if (!uploadInput || !uploadInput.files.length) {
