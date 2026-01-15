@@ -40,7 +40,7 @@ header span {
 
 main {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) minmax(320px, 2fr);
+  grid-template-columns: minmax(340px, 1.3fr) minmax(320px, 1.7fr);
   gap: 24px;
   padding: 12px 10vw 48px;
 }
